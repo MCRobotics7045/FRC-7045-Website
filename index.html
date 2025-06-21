@@ -17,13 +17,24 @@
         }
         /* Custom styles for dropdown animation */
         .dropdown-menu {
-            max-height: 0; /* Hidden by default */
-            overflow: hidden;
-            transition: max-height 0.3s ease-out; /* Smooth transition */
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+            max-height 0.3s ease-out,
+            opacity 0.2s ease-out,
+            visibility 0.2s ease-out;
         }
+
         .dropdown-menu.active {
-            max-height: 200px; /* Adjust as needed to show content */
-            transition: max-height 0.3s ease-in;
+            max-height: 200px;
+            opacity: 1;
+            visibility: visible;
+            transition:
+                max-height 0.3s ease-in,
+                opacity 0.2s ease-in,
+                visibility 0.2s ease-in;
         }
         /* Hide content sections by default */
         .content-section {
@@ -91,6 +102,8 @@
         }
     </style>
 </head>
+
+
 <body class="min-h-screen flex flex-col">
 
     <!-- Header Section -->
@@ -120,8 +133,9 @@
                     </svg>
                 </button>
                 <div id="dropdown-menu" class="dropdown-menu absolute right-0 mt-2 w-48 bg-white text-blue-800 rounded-md shadow-lg py-2 z-10">
-                    <a href="#" class="block px-4 py-2 hover:bg-sky-100 rounded-md transition duration-200" onclick="showPage('about'); toggleDropdown(); return false;">About</a>
-                    <a href="#" class="block px-4 py-2 hover:bg-sky-100 rounded-md transition duration-200" onclick="showPage('current-project'); toggleDropdown(); return false;">Our Robots</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-sky-100 rounded-md transition duration-200" onclick="showPage('home'); toggleDropdown(); return false;">Home</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-sky-100 rounded-md transition duration-200" onclick="showPage('about'); toggleDropdown(); return false;">About The Team</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-sky-100 rounded-md transition duration-200" onclick="showPage('robots'); toggleDropdown(); return false;">Robots Page</a>
                     <a href="#" class="block px-4 py-2 hover:bg-sky-100 rounded-md transition duration-200" onclick="showPage('fundraiser'); toggleDropdown(); return false;">Fundraiser</a>
                 </div>
             </div>
@@ -129,8 +143,9 @@
             <!-- Navigation Links (for desktop) -->
             <nav class="hidden md:block">
                 <ul class="flex space-x-6">
+                    <li><a href="#" class="text-white hover:text-sky-300 transition duration-300 text-lg font-medium rounded-md p-2" onclick="showPage('home'); return false;">Home</a></li>
                     <li><a href="#" class="text-white hover:text-sky-300 transition duration-300 text-lg font-medium rounded-md p-2" onclick="showPage('about'); return false;">About</a></li>
-                    <li><a href="#" class="text-white hover:text-sky-300 transition duration-300 text-lg font-medium rounded-md p-2" onclick="showPage('current-project'); return false;">Our Robots</a></li>
+                    <li><a href="#" class="text-white hover:text-sky-300 transition duration-300 text-lg font-medium rounded-md p-2" onclick="showPage('robots'); toggleDropdown(); return false;">Our Robots</a></li>
                     <li><a href="#" class="text-white hover:text-sky-300 transition duration-300 text-lg font-medium rounded-md p-2" onclick="showPage('fundraiser'); return false;">Fundraiser</a></li>
                 </ul>
             </nav>
@@ -140,31 +155,68 @@
     <!-- Main Content Area -->
     <main class="container mx-auto p-4 flex-grow">
         <!-- Home Page Content -->
-        <section id="home-page" class="content-section active bg-white p-8 rounded-lg shadow-md mb-8">
-            <h2 class="text-4xl font-extrabold text-blue-800 mb-6 text-center">Welcome to FRC 7045!</h2>
-            <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div>
-                    <p class="text-gray-700 text-lg leading-relaxed mb-4">
-                        We are <span class="font-semibold text-blue-800">FRC Team 7045</span>, a passionate group of students dedicated to robotics, engineering, and innovation. We participate in the <a href="https://www.firstinspires.org/robotics/frc" target="_blank" class="text-sky-600 hover:underline">FIRST Robotics Competition</a>, where we design, build, and program robots to compete in challenging annual games.
-                    </p>
-                    <p class="text-gray-700 text-lg leading-relaxed mb-4">
-                        Our team is committed to fostering a love for STEM, developing critical problem-solving skills, and building a strong community. Through our work, we aim to inspire future generations of engineers and scientists.
+        <section id="home-page" class="content-section bg-white p-8 rounded-lg shadow-md mb-8">
+            <h2 class="text-4xl font-extrabold text-blue-800 mb-6 text-center">
+                Welcome to FRC 7045!
+            </h2>
+
+            <div class="flex-grow grid md:grid-cols-2 gap-8 items-start">
+                
+                <!-- Left Column: flex-column justify-end to push content down -->
+                <div class="flex flex-col justify-end space-y-6">
+                
+                <!-- Countdown Card -->
+            <div id="countdown"
+                    class="bg-blue-800 text-white rounded-lg shadow-md p-6 md:p-8 h-48 md:h-64 flex flex-col">
+                <!-- Event Title -->
+                <p class="text-2xl md:text-3xl font-semibold mb-1 text-center">RoboCon NJ</p>
+                <!-- Smaller label -->
+                <p class="text-lg md:text-xl uppercase tracking-wide mb-2 text-center">Next Competition In:</p>
+                
+                <!-- Centered timer -->
+                <div class="flex-grow flex items-center justify-center">
+                    <p id="countdown-timer" class="text-3xl md:text-5xl font-bold">—</p>
+                </div>
+            </div>
+    
+
+
+
+                
+                <!-- Intro Text Block -->
+                <div class="space-y-6">
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                    We are <span class="font-semibold text-blue-800">FRC Team 7045</span>, a passionate group of students dedicated to robotics, engineering, and innovation. We participate in the <a href="https://www.firstinspires.org/robotics/frc" target="_blank" class="text-sky-600 hover:underline">FIRST Robotics Competition</a>, where we design, build, and program robots to compete in challenging annual games.
                     </p>
                     <p class="text-gray-700 text-lg leading-relaxed">
-                        Explore our site to learn more about our journey, current endeavors, and how you can support us!
+                    Our team is committed to fostering a love for STEM, developing critical problem-solving skills, and building a strong community. Through our work, we aim to inspire future generations of engineers and scientists.
+                    </p>
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                    Explore our site to learn more about our journey, current endeavors, and how you can support us!
                     </p>
                 </div>
-                <div class="flex justify-center">
-                    <!-- Image with your specified path -->
-                    <img src="https://gregr10.github.io/FRC-7045-MC-Crusaders/images/IMG_6007.JPG" alt="FRC 7045 Team Robot" class="rounded-lg shadow-lg max-w-full h-auto">
+                
                 </div>
+
+                <!-- Right Column: Team photo -->
+                <div class="flex justify-center">
+                <img src="https://gregr10.github.io/FRC-7045-MC-Crusaders/images/IMG_6007.JPG"
+                    alt="FRC 7045 Team Robot"
+                    class="rounded-lg shadow-lg max-w-full h-auto">
+                </div>
+
             </div>
+
+            <!-- Button at bottom -->
             <div class="mt-8 text-center">
-                <button class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 transform hover:scale-105" onclick="showPage('current-project'); return false;">
-                    See Our Current Project
+                <button class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 transform hover:scale-105"
+                        onclick="showPage('current-project'); return false;">
+                See Our Current Robot
                 </button>
-            </div>
+            </div> 
         </section>
+
+
 
         <!-- About Page Content -->
         <section id="about-page" class="content-section bg-white p-8 rounded-lg shadow-md mb-8">
@@ -193,8 +245,133 @@
                 </p>
             </div>
         </section>
+        
+        
+      <section id="robots-page" class="content-section bg-white p-8 rounded-lg shadow-md mb-8">
+        <h2 class="text-4xl font-bold text-blue-600 mb-12 text-center">
+            Our Robots Over the Years
+        </h2>
 
-        <!-- Current Project Page Content -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Main Robot: spans both columns on md+ -->
+            <div class="bg-blue-50 rounded-lg shadow-md flex overflow-hidden md:col-span-2 h-64">
+            <div class="w-1/3 bg-gray-200 flex items-center justify-center">
+                <span class="text-gray-500">Photo</span>
+            </div>
+            <div class="w-2/3 p-4 flex flex-col justify-between">
+                <h3 class="text-2xl font-bold text-blue-600 text-center mb-2">2025 – Reefscape</h3>
+                 <p class="text-l text-gray-700 flex-grow ">[robot functions & design]</p>
+                <p class="text-gray-600 text-sm">Events: 4 | Awards: 0 </p>
+
+                <button class="mt-4 self-center bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 px-4 rounded">
+                Robot Info
+                </button>
+            </div>
+            </div>
+
+            <!-- Robot 2 -->
+            <div class="bg-blue-50 rounded-lg shadow-md flex overflow-hidden h-48">
+            <div class="w-1/3 bg-gray-200 flex items-center justify-center">
+                <span class="text-gray-500">Photo</span>
+            </div>
+            <div class="w-2/3 p-4 flex flex-col justify-between">
+                <h3 class="text-xl font-bold text-blue-600 text-center mb-2">2024 – Crescendo</h3>
+                 <p class="text-gray-700 flex-grow mb-2">[robot functions & design]</p>
+                <p class="text-gray-600 text-sm">Events: 5 | Awards: 0</p>
+                <button class="mt-4 self-center bg-sky-500 hover:bg-sky-600 text-white font-semibold py-1 px-3 rounded">
+                Robot Info
+                </button>
+            </div>
+            </div>
+
+            <!-- Robot 3 -->
+            <div class="bg-blue-50 rounded-lg shadow-md flex overflow-hidden h-48">
+            <div class="w-1/3 bg-gray-200 flex items-center justify-center">
+                <span class="text-gray-500">Photo</span>
+            </div>
+            <div class="w-2/3 p-4 flex flex-col justify-between">
+                <h3 class="text-xl font-bold text-blue-600 text-center mb-2">2023 – Charged Up</h3>
+                 <p class="text-gray-700 flex-grow mb-2">[robot functions & design]</p>
+                <p class="text-gray-600 text-sm">Events: 3 | Awards: 3 </p>
+
+                <button class="mt-4 self-center bg-sky-500 hover:bg-sky-600 text-white font-semibold py-1 px-3 rounded">
+                Robot Info
+                </button>
+            </div>
+            </div>
+
+            <!-- Robot 4 -->
+            <div class="bg-blue-50 rounded-lg shadow-md flex overflow-hidden h-48">
+            <div class="w-1/3 bg-gray-200 flex items-center justify-center">
+                <span class="text-gray-500">Photo</span>
+            </div>
+            <div class="w-2/3 p-4 flex flex-col justify-between">
+                <h3 class="text-xl font-bold text-blue-600 text-center mb-2">2022 – Rapid React</h3>
+                 <p class="text-gray-700 flex-grow mb-2">[robot functions & design]</p>
+                <p class="text-gray-600 text-sm">Events: 3 | Awards: 1</p>
+
+                <button class="mt-4 self-center bg-sky-500 hover:bg-sky-600 text-white font-semibold py-1 px-3 rounded">
+                Robot Info
+                </button>
+            </div>
+            </div>
+
+            <!-- Robot 5 -->
+            <div class="bg-blue-50 rounded-lg shadow-md flex overflow-hidden h-48">
+            <div class="w-1/3 bg-gray-200 flex items-center justify-center">
+                <span class="text-gray-500">Photo</span>
+            </div>
+            <div class="w-2/3 p-4 flex flex-col justify-between">
+                <h3 class="text-xl font-bold text-blue-600 text-center mb-2">2021 – Infinite Recharge</h3>
+                 <p class="text-gray-700 flex-grow mb-2">[robot functions & design]</p>
+                <p class="text-gray-600 text-sm">Events: 0 | Awards: 0</p>
+
+                <button class="mt-4 self-center bg-sky-500 hover:bg-sky-600 text-white font-semibold py-1 px-3 rounded">
+                Robot Info
+                </button>
+            </div>
+            </div>
+
+            <!-- Robot 6 -->
+            <div class="bg-blue-50 rounded-lg shadow-md flex overflow-hidden h-48">
+            <div class="w-1/3 bg-gray-200 flex items-center justify-center">
+                <span class="text-gray-500">Photo</span>
+            </div>
+            <div class="w-2/3 p-4 flex flex-col justify-between">
+                <h3 class="text-xl font-bold text-blue-600 text-center mb-2">2019 – Deep Space</h3>
+                 <p class="text-gray-700 flex-grow mb-2">[robot functions & design]</p>
+                <p class="text-gray-600 text-sm">Events: 2 | Awards: 0</p>
+
+                <button class="mt-4 self-center bg-sky-500 hover:bg-sky-600 text-white font-semibold py-1 px-3 rounded">
+                Robot Info
+                </button>
+            </div>
+            </div>
+
+            <!-- Robot 7 -->
+            <div class="bg-blue-50 rounded-lg shadow-md flex overflow-hidden h-48">
+            <div class="w-1/3 bg-gray-200 flex items-center justify-center">
+                <span class="text-gray-500">Photo</span>
+            </div>
+            <div class="w-2/3 p-4 flex flex-col justify-between">
+                <h3 class="text-xl font-bold text-blue-600 text-center mb-2">2018 – Power Up</h3>
+                <p class="text-gray-700 flex-grow mb-2">[robot functions & design]</p>
+                <p class="text-gray-600 text-sm">Events: 2 | Awards: 1</p>
+
+                <button class="mt-4 self-center bg-sky-500 hover:bg-sky-600 text-white font-semibold py-1 px-3 rounded">
+                Robot Info
+                </button>
+            </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+      
+
         <section id="current-project-page" class="content-section bg-white p-8 rounded-lg shadow-md mb-8">
             <h2 class="text-4xl font-extrabold text-blue-800 mb-6 text-center">Reefscape 2025 Robot: Dory</h2>
             <div class="text-gray-700 leading-relaxed">
@@ -207,7 +384,6 @@
                 </p>
                 <div class="grid md:grid-cols-2 gap-6 mb-6">
                     <div>
-                        <!-- Re-added missing placeholder image for CAD design -->
                         <img src="https://placehold.co/400x250/2b6cb0/ffffff?text=Robot+CAD" alt="Robot CAD Design" class="rounded-lg shadow-md max-w-full h-auto mb-4">
                         <p class="text-sm text-gray-600 text-center">Computer-Aided Design (CAD) of our robot's chassis.</p>
                     </div>
@@ -226,7 +402,6 @@
             </div>
         </section>
 
-        <!-- Fundraiser Page Content -->
         <section id="fundraiser-page" class="content-section bg-white p-8 rounded-lg shadow-md mb-8">
             <h2 class="text-4xl font-extrabold text-blue-800 mb-6 text-center">Support FRC 7045</h2>
             <div class="text-gray-700 leading-relaxed">
@@ -282,64 +457,67 @@
         <p class="text-sm mt-4">&copy; 2025 FRC 7045. All rights reserved.</p>
     </footer>
 
-    <script>
-        // Get references to elements
-        const dropdownButton = document.getElementById('dropdown-button');
-        const dropdownMenu = document.getElementById('dropdown-menu');
-        const contentSections = document.querySelectorAll('.content-section');
+<script>
+  // ─── Mobile menu toggle ───
+  const dropdownButton = document.getElementById('dropdown-button');
+  const dropdownMenu   = document.getElementById('dropdown-menu');
 
-       
+  // Expose globally so inline onclicks work:
+  window.toggleDropdown = () => {
+    dropdownMenu.classList.toggle('active');
+  };
+  dropdownButton.addEventListener('click', window.toggleDropdown);
+
+  document.addEventListener('click', e => {
+    if (
+      dropdownMenu.classList.contains('active') &&
+      !dropdownButton.contains(e.target) &&
+      !dropdownMenu.contains(e.target)
+    ) {
+      dropdownMenu.classList.remove('active');
+    }
+  });
+
+  // ─── Section switching ───
+  const contentSections = document.querySelectorAll('.content-section');
+  window.showPage = pageId => {
+    contentSections.forEach(s => s.classList.remove('active'));
+    const target = document.getElementById(`${pageId}-page`);
+    if (target) target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // ─── Countdown ───
+  function updateCountdown() {
+    const now    = new Date();
+    const target = new Date('2025-09-28T00:00:00');
+    const diff   = target - now;
+    const el     = document.getElementById('countdown-timer');
+    if (!el) return;
+
+    if (diff <= 0) {
+      el.textContent = 'Competition Day!';
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hrs  = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2,'0');
+    const mins = String(Math.floor((diff / (1000 * 60)) % 60)).padStart(2,'0');
+    const secs = String(Math.floor((diff / 1000) % 60)).padStart(2,'0');
+
+    el.textContent = `${days}d ${hrs}h ${mins}m ${secs}s`;
+  }
+
+  // ─── Initialize ───
+  document.addEventListener('DOMContentLoaded', () => {
+    window.showPage('home');        // show home on load
+    updateCountdown();              // one tick immediately
+    setInterval(updateCountdown, 1000);
+  });
+</script>
 
 
-        // Function to toggle dropdown menu visibility
-        function toggleDropdown() {
-            if (dropdownMenu) { // Defensive check
-                dropdownMenu.classList.toggle('active');
-            }
-        }
-
-        // Add event listener to dropdown button
-        if (dropdownButton) {
-            dropdownButton.addEventListener('click', toggleDropdown);
-        }
-
-        // Function to show the selected page and hide others
-        function showPage(pageId) {
-            // Hide all content sections
-            if (contentSections) { // Defensive check
-                contentSections.forEach(section => {
-                    section.classList.remove('active');
-                });
-            }
 
 
-            // Show the requested content section
-            const targetPage = document.getElementById(`${pageId}-page`); // Ensure ID is correctly formed
-            if (targetPage) {
-                targetPage.classList.add('active');
-                // Scroll to the top of the content area
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }
-
-        // Close the dropdown if the user clicks outside of it
-        window.addEventListener('click', function(event) {
-            // Check if the click is outside the dropdown button AND outside the dropdown menu
-            if (dropdownButton && !dropdownButton.contains(event.target) && dropdownMenu && !dropdownMenu.contains(event.target)) {
-                if (dropdownMenu.classList.contains('active')) {
-                    dropdownMenu.classList.remove('active');
-                }
-            }
-        });
-
-        // Initialize by showing the home page when the script loads
-        document.addEventListener('DOMContentLoaded', () => {
-            showPage('home');
-        });
-
-      
-             
-        
-    </script>
 </body>
 </html>
