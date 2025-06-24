@@ -258,7 +258,7 @@
             <div class="bg-blue-50 rounded-lg shadow-md flex overflow-hidden md:col-span-2 h-64">
             <div class="w-1/3 flex items-center justify-center">
                 <img
-                src="https://mcrobotics7045.github.io/FRC-7045-Website/images/reefscape2025.jpg"
+                src="https://mcrobotics7045.github.io/FRC-7045-Website/images/Robot%20Pics/202503.jpg"
                 alt="2025 Reefscape Robot"
                 class="object-cover w-full h-full"
                 />
@@ -280,8 +280,8 @@
             <div class="bg-blue-50 rounded-lg shadow-md flex overflow-hidden h-48">
             <div class="w-1/3 flex items-center justify-center">
                 <img
-                src="https://mcrobotics7045.github.io/FRC-7045-Website/images/crescendo2024.jpg"
-                alt="2024 Crescendo Robot"
+                src="https://mcrobotics7045.github.io/FRC-7045-Website/images/Robot%20Pics/202401.jpg"
+                alt="2025 Reefscape Robot"
                 class="object-cover w-full h-full"
                 />
             </div>
@@ -412,17 +412,88 @@
         </section>
 
 
-                <!-- Reefscape 2025 -->
-        <section id="reefscape-page" class="content-section bg-white p-8 rounded-lg shadow-md mb-8">
-            <h2 class="text-4xl font-bold text-blue-600 mb-4 text-center">2025 – Reefscape</h2>
-            <!-- TODO: fill in your Reefscape details -->
-            <p>[Reefscape 2025 content goes here]</p>
-            <div class="mt-6 text-center">
-                <button class="bg-sky-500 hover:bg-sky-600 text-white px-4 py-2 rounded" onclick="showPage('robots');">
-                ← Back to Robots
-                </button>
+       
+ 
+</section><section id="reefscape-page" class="content-section bg-white p-8 rounded-lg shadow-md mb-8">
+        <!-- Title -->
+        <h2 class="text-4xl font-bold text-blue-600 mb-6 text-center">
+            2025 – Reefscape
+        </h2>
+
+        <!-- Top: text left, image right -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+            <!-- Text -->
+            <div class="space-y-6">
+            <h3 class="text-2xl font-semibold text-blue-700">Game Overview</h3>
+            <p class="leading-relaxed text-gray-700">
+                In 2025, our challenge was an ocean-themed game called <strong>Reefscape</strong>. Robots needed to place 4″ PVC pipes (“Coral”) onto purple metal pylons (“Reef”), arranged in pentagon formations on both the left and right sides of the field’s center. They then removed green yoga balls (“Algae”) from the pylons and deposited them into an 8-foot-high net. In the final 20 seconds, robots were allowed to drive under the net, latch onto a dangling cage, and lift themselves clear of the floor—but we were unable to complete the climb.
+            </p>
+
+            <h3 class="text-2xl font-semibold text-blue-700">Elevator</h3>
+            <p class="leading-relaxed text-gray-700">
+                Our robot was designed to score on all four reef levels. To achieve this, we centered our design around a REV Robotics linear elevator. We originally powered its motion with a NEO motor but upgraded to a Falcon 500 after our second competition for greater speed and torque.
+            </p>
+
+            <h3 class="text-2xl font-semibold text-blue-700">Coral Roller</h3>
+            <p class="leading-relaxed text-gray-700">
+                The Coral Roller, driven by a NEO 550 on a MAXPlanetary gearbox, uses green compliant wheels to cradle each pipe until release. A polycarbonate ramp feeds Coral directly from the station into the roller for fast, reliable scoring.
+            </p>
+
+            <h3 class="text-2xl font-semibold text-blue-700">Algae Arms</h3>
+            <p class="leading-relaxed text-gray-700">
+                The Algae Arms, also powered by a NEO 550, swing up and down to knock balls free from their reef slots and onto the floor, where they’re collected for scoring.
+            </p>
+
+            <h3 class="text-2xl font-semibold text-blue-700">Drivetrain</h3>
+            <p class="leading-relaxed text-gray-700">
+                We built a 30″×30″ square base from 2″ hollow extrusion and used SDS Mk4i swerve modules, each controlled by Kraken X60 units for drive and steering. A 1/8″ aluminum belly pan protects wiring and drivetrain components underneath.
+            </p>
+
+            <h3 class="text-2xl font-semibold text-blue-700">Electronics</h3>
+            <p class="leading-relaxed text-gray-700">
+                Robot control is handled by the FIRST® RoboRIO, with power distributed via a REV Robotics Power Distribution Hub. For vision and alignment, we integrated an Orange Pi 5 single-board computer paired with an Arducam OV9281 global-shutter camera to detect and track field elements in real time.
+            </p>
             </div>
+
+            <!-- Image -->
+            <div class="overflow-hidden rounded-lg shadow-md">
+            <img
+                src="https://mcrobotics7045.github.io/FRC-7045-Website/images/Robot%20Pics/202501.jpg"
+                alt="Reefscape front view"
+                class="w-full h-auto object-contain"
+            />
+            </div>
+        </div>
+
+        <!-- Game animation -->
+        <div class="mt-8">
+            <h3 class="text-2xl font-semibold text-blue-700 mb-4">Reefscape Game Animation:</h3>
+            <div class="w-full h-96">
+            <iframe
+                class="w-full h-full rounded-lg shadow-lg"
+                src="https://www.youtube.com/embed/YWbxcjlY9JY"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+            ></iframe>
+            </div>
+        </div>
+
+        <!-- Back button -->
+        <div class="mt-6 text-center">
+            <button
+            class="bg-sky-500 hover:bg-sky-600 text-white px-4 py-2 rounded-full shadow"
+            onclick="showPage('robots');"
+            >
+            ← Back to Robots
+            </button>
+        </div>
         </section>
+
+
+
+
+
 
         <!-- Crescendo 2024 -->
         <section id="crescendo-page" class="content-section bg-white p-8 rounded-lg shadow-md mb-8">
